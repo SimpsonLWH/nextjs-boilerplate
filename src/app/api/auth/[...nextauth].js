@@ -1,5 +1,8 @@
 import NextAuth from 'next-auth';
 import { EmailProvider } from 'next-auth/providers';
+import dbConnect from '../../../lib/mongodb';
+import User from '../../../models/User';
+
 
 export default NextAuth({
   providers: [

@@ -21,6 +21,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/types/**/*.d.ts",  // Add this line to include global.d.ts
+    "src/app/signin/page.tsx"  // Ensure .tsx is used for TypeScript files
+  ],
   "exclude": ["node_modules"]
 }

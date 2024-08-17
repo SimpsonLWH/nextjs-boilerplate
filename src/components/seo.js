@@ -11,6 +11,14 @@ const SEO = ({ title, description, url, image }) => {
       <meta property="og:image" content={image} />
       <meta name="twitter:card" content="summary_large_image" />
       <link rel="canonical" href={url} />
+      <script type="application/ld+json">
+        {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": url,
+            "name": title,
+        })}
+        </script>
     </Head>
   );
 };
