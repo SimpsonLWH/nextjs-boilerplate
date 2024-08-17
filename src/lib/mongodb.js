@@ -1,21 +1,16 @@
-// lib/mongodb.ts
-import mongoose, { Mongoose } from 'mongoose';
+// lib/mongodb.js
+const mongoose = require('mongoose');
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
-interface Cached {
-  conn: Mongoose | null;
-  promise: Promise<Mongoose> | null;
-}
+// Use a simple cache object
+let cached = global.mongoose || { conn: null, promise: null };
 
-// Use the extended global type
-let cached: Cached = global.mongoose || { conn: null, promise: null };
-
-async function dbConnect(): Promise<Mongoose> {
+async function dbConnect() {
   if (cached.conn) {
     return cached.conn;
   }
@@ -40,4 +35,4 @@ async function dbConnect(): Promise<Mongoose> {
   return cached.conn;
 }
 
-export default dbConnect;
+module.exports = dbConnect;

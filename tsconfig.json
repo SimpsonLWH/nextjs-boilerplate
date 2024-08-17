@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/types/**/*.d.ts",  // Add this line to include global.d.ts
-    "src/app/signin/page.tsx"  // Ensure .tsx is used for TypeScript files
-  ],
+    "src/app/signin/page.jsx"  // Ensure .tsx is used for TypeScript files
+, "src/lib/mongodb.js", "src/app/api/auth/[...nextauth].js", "src/app/page.jsx", "src/app/layout.jsx"  ],
   "exclude": ["node_modules"]
 }

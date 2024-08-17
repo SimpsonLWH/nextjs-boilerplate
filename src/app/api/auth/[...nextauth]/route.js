@@ -1,10 +1,10 @@
-// src/app/api/auth/[...nextauth].js
+// src/app/api/auth/[...nextauth]/route.js
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { MongoDBAdapter } from 'next-auth/mongodb-adapter';
 import clientPromise from '../../../lib/mongodb';
 
-export default NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       credentials: {
@@ -12,7 +12,7 @@ export default NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        // Validate credentials and return user object
+        // Replace this with your actual authentication logic
         const user = { id: '1', name: 'User', email: credentials?.email };
         if (user) {
           return user;
@@ -23,7 +23,7 @@ export default NextAuth({
   ],
   adapter: MongoDBAdapter(clientPromise),
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/signin', // Custom sign-in page
   },
   session: {
     jwt: true,
@@ -36,4 +36,6 @@ export default NextAuth({
       return session;
     },
   },
-});
+};
+
+export default NextAuth(authOptions);
